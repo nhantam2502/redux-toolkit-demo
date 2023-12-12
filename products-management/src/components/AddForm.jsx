@@ -1,97 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form, Input, InputNumber } from 'antd';
+import { useDispatch } from 'react-redux';
+import { createProduct } from '../redux/Slices/ProductSlice';
 
-const onFinish = (values) => {
-    required = true;
-    console.log('Success:', values);
-};
+function AddForm() {
 
-const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
+    const dispatch = useDispatch();
 
-const onChange = (value) => {
-    console.log('changed', value);
-}
+    const [form] = Form.useForm();
 
-const AddForm = () => (
-    <Form
-        name="basic"
-        labelCol={{
-            span: 8,
-        }}
-        wrapperCol={{
-            span: 16,
-        }}
-        style={{
-            maxWidth: 600,
-        }}
+    const submitForm = (value) => {
+        dispatch(createProduct(value));
+        console.log("value: ", value);
+    }
 
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-    >
-        <Form.Item
-            label="Product name"
-            name="productname"
-            rules={[
-                {
-                    required: true,
-                    message: 'Please input Product name!',
-                },
-            ]}
-        >
-            <Input />
-        </Form.Item>
-
-        <Form.Item
-            label="Image"
-            name="image"
-            rules={[
-                {
-                    required: true,
-                    message: 'Please input link of image!',
-                },
-            ]}
-        >
-            <Input />
-        </Form.Item>
-
-        <Form.Item
-            label="Category"
-            name="category"
-            rules={[
-                {
-                    required: true,
-                    message: 'Please input the category of product',
-                },
-            ]}
-        >
-            <Input />
-        </Form.Item>
-
-        <Form.Item
-            label="Price"
-            name="price"
-            rules={[
-                {
-                    required: true,
-                    message: 'Please input the price of product',
-                },
-            ]}
-        >
-            <InputNumber min={1} onChange={onChange}/>
-        </Form.Item>
-
-        <Form.Item
+    return (
+        <Form
+            labelCol={{
+                span: 6
+            }}
             wrapperCol={{
-                offset: 8,
                 span: 16,
             }}
+            id='myForm'
+            form={form}
+            onFinish={submitForm}
         >
-            <Button type="primary" htmlType="submit">
-                Add
-            </Button>
-        </Form.Item>
-    </Form>
-);
+            <Form.Item
+                label="Product name"
+                name="name"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input Product name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Image"
+                name="image"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input link of image!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Category"
+                name="category"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input the category of product',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                label="Price"
+                name="price"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input the price of product',
+                    },
+                ]}
+            >
+                <InputNumber min={1} />
+            </Form.Item>
+
+            <Form.Item
+                wrapperCol={{
+                    offset: 6,
+                }}
+            >
+                <Button type="primary" htmlType="submit">
+                    Add
+                </Button>
+            </Form.Item>
+        </Form>
+    )
+}
 export default AddForm;

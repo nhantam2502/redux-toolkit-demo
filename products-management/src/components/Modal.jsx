@@ -4,6 +4,7 @@ import AddForm from './AddForm';
 
 const ModalButton = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -12,19 +13,24 @@ const ModalButton = () => {
         setIsModalOpen(false);
     };
 
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
     return (
-        <div>
-            <Button type="primary" onClick={showModal}>
+        <div style={{ marginBottom: 10, marginTop: 10 }}>
+            <Button type='primary' onClick={showModal}>
                 Add new product
             </Button>
 
             <Modal
                 title="Add new product"
                 open={isModalOpen}
-                onOk={handleOk}
+                onCancel={handleCancel}
                 width={500}
+                footer={null}
             >
-                <AddForm/>
+                <AddForm />
             </Modal>
         </div>
     );

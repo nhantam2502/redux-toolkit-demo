@@ -18,7 +18,11 @@ export default function TableDashBoard({ dataSource }) {
             dataIndex: 'category',
             key: 'category',
         },
-        
+        {
+            title: 'Price $',
+            dataIndex: 'price',
+            key: 'price',
+        },
         {
             title: 'Action',
             key: 'action',
