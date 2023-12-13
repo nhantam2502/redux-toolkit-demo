@@ -3,16 +3,22 @@ import { Button, Form, Input, InputNumber } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../redux/Slices/ProductSlice';
 
-function AddForm() {
+function AddForm ({onClose}) {
 
     const dispatch = useDispatch();
 
     const [form] = Form.useForm();
 
-    const submitForm = (value) => {
-        dispatch(createProduct(value));
-        console.log("value: ", value);
-    }
+    const onFinish = (values) => {
+        // Dispatch the createProduct action with the form values
+        dispatch(createProduct(values));
+
+        // Reset the form fields after dispatching the action
+        form.resetFields();
+
+        // Close the Modal
+        onClose();
+    };
 
     return (
         <Form
@@ -24,7 +30,7 @@ function AddForm() {
             }}
             id='myForm'
             form={form}
-            onFinish={submitForm}
+            onFinish={onFinish}
         >
             <Form.Item
                 label="Product name"

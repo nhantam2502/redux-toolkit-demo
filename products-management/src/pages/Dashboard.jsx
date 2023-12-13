@@ -1,13 +1,13 @@
 import TableDashBoard from "../components/Table";
 import useProductList from "../hooks/useProductList";
-import ModalButton from "../components/Modal";
+import ModalAdd from "../components/ModalAdd";
 
 const Dashboard = () => {
   const productList = useProductList();
 
   return (
     <div>
-      <ModalButton/>
+      <ModalAdd/>
       <TableDashBoard dataSource={productList} />
     </div>
   )
