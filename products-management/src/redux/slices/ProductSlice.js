@@ -16,7 +16,6 @@ export const ProductSlice = createSlice({
                 state.productList = action.payload;
             })
             .addCase(createProduct.fulfilled, (state, action) => {
-                // Handle success for creating a product
                 state.productList.push(action.payload);
             })
             .addCase(updateProduct.fulfilled, (state, action) => {

@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import NavBar from "./components/Header";
 import Bottom from "./components/Footer";
 import Home from "./pages/Home";
@@ -7,6 +9,8 @@ import AddForm from "./components/AddForm";
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer position="top-right" autoClose={2000} />
+
       <NavBar />
 
       <Routes>

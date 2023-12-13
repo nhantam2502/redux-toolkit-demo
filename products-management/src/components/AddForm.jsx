@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Input, InputNumber } from 'antd';
 import { useDispatch } from 'react-redux';
 import { createProduct } from '../redux/Slices/ProductSlice';
+import { toast } from "react-toastify";
 
 function AddForm ({onClose}) {
 
@@ -18,6 +19,7 @@ function AddForm ({onClose}) {
 
         // Close the Modal
         onClose();
+        toast.success("New product has been added successfully");
     };
 
     return (

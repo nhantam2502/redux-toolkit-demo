@@ -3,6 +3,7 @@ import { Space, Table, Modal, Form, Input, InputNumber } from 'antd';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useDispatch } from 'react-redux';
 import { deleteProduct, updateProduct } from '../redux/Slices/ProductSlice';
+import { toast } from "react-toastify";
 
 export default function TableDashBoard({ dataSource }) {
 
@@ -25,6 +26,7 @@ export default function TableDashBoard({ dataSource }) {
             dispatch(updateProduct({ id: editedProduct.id, updatedProduct: values }));
             setEditModalVisible(false);
             setEditedProduct(null);
+            toast.success(`Updated Product with ID: ${editedProduct.id} successfully`);
         });
     };
 
@@ -35,6 +37,7 @@ export default function TableDashBoard({ dataSource }) {
 
     const handleDelete = (id) => {
         dispatch(deleteProduct(id));
+        toast.success(`Deleted Product with ID: ${id} successfully`);
     };
 
     const columns = [
